@@ -4,6 +4,10 @@
 
 ### _The Sharpest Blades in Birmingham_
 
+<img src="https://images4.alphacoders.com/973/973967.jpg" alt="Thomas Shelby" width="700"/>
+
+![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=3000&pause=1000&color=F7F700&center=true&vCenter=true&width=700&lines=THOMAS+SHELBY+MD;By+Order+of+the+Peaky+Blinders;Jewish+MD+-+Peaky+Features)
+
 <img src="https://i.imgur.com/LyHic3i.gif" alt="Peaky Blinders" width="500"/>
 
 [![GitHub Stars](https://img.shields.io/github/stars/Fellix-234/Jewish-md?style=for-the-badge&logo=github&color=yellow)](https://github.com/Fellix-234/Jewish-md/stargazers)
