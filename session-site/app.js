@@ -7,17 +7,22 @@ const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const publicDir = path.join(__dirname, 'public');
 
 // Store pending pairing codes
 const pendingCodes = new Map();
 
 // Serve static files
-app.use(express.static('public'));
+app.use(express.static(publicDir));
 app.use(express.json());
 
 // ⚡ HOME PAGE
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(publicDir, 'index.html'));
+});
+
+app.get('/health', (req, res) => {
+    res.status(200).json({ ok: true, service: 'jewish-md-session-site' });
 });
 
 // ⚡ REQUEST PAIRING CODE
@@ -172,4 +177,11 @@ app.listen(PORT, () => {
 ║  Running on: http://localhost:${PORT}     ║
 ╚═══════════════════════════════════════════╝
     `);
+});
+
+app.use((req, res) => {
+    res.status(404).json({
+        error: 'Not Found',
+        hint: 'Use / for UI, /health for status, and /api/* endpoints for session APIs'
+    });
 });
