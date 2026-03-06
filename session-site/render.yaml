@@ -1,0 +1,12 @@
+{
+  "name": "peaky-session-site",
+  "description": "Peaky Blinders WhatsApp Pairing Code Generator",
+  "buildCommand": "npm install",
+  "startCommand": "node app.js",
+  "envs": [
+    {
+      "key": "NODE_ENV",
+      "value": "production"
+    }
+  ]
+}
