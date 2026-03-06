@@ -124,8 +124,8 @@
 **1️⃣ Clone the Repository**
 
 ```bash
-git clone https://github.com/your-username/peaky-blinders-md.git
-cd peaky-blinders-md
+git clone https://github.com/Fellix-234/Jewish-md.git
+cd Jewish-md
 ```
 
 **2️⃣ Install Dependencies**
@@ -179,6 +179,31 @@ Choose your preferred method:
   1. Set `usePairingCode = false` in `index.js`
   2. Scan QR code with WhatsApp
   3. Connected!
+
+---
+
+## 🌐 Render Setup (Use 2 Services)
+
+To avoid restart loops, deploy these separately on Render:
+
+### 1) Main Bot Service (Background Worker)
+- **Service Type:** Background Worker
+- **Repository:** `Fellix-234/Jewish-md`
+- **Root Directory:** leave empty
+- **Build Command:** `npm install`
+- **Start Command:** `node index.js`
+
+### 2) Session Site (Web Service)
+- **Service Type:** Web Service
+- **Repository:** `Fellix-234/Jewish-md`
+- **Root Directory:** `session-site`
+- **Build Command:** `npm install`
+- **Start Command:** `node app.js`
+
+After deploy:
+- Bot runs in worker service.
+- Pairing code page runs in web service URL.
+- Use the **Get Session Code** button at the top of this README.
 
 ---
 
