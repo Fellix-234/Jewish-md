@@ -39,7 +39,7 @@
 
 <div align="center">
 
-[![Get Session Code](https://img.shields.io/badge/🔓_GET_SESSION_CODE-gold?style=for-the-badge&labelColor=black)](https://jewish-md.onrender.com)
+[![Get Session Code](https://img.shields.io/badge/🔓_GET_SESSION_CODE-gold?style=for-the-badge&labelColor=black)](https://jewish-md-session-site.onrender.com)
 
 **↑ Click to generate your WhatsApp pairing code ↑**
 
