@@ -49,6 +49,16 @@
 
 ---
 
+### 🎩 Thomas Shelby
+
+<div align="center">
+
+![Thomas Shelby](https://images4.alphacoders.com/973/973967.jpg)
+
+</div>
+
+---
+
 ### 📊 Bot Statistics
 
 <p align="center">

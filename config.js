@@ -19,4 +19,13 @@ module.exports = {
     
     // Interactive Menu Settings
     menuStyle: 'interactive', // 'interactive' or 'classic'
+
+    // Branding & Images
+    repoUrl: 'https://github.com/Fellix-234/Jewish-md',
+    thomasImages: {
+        menu: 'https://images2.alphacoders.com/974/974494.jpg',
+        alive: 'https://images6.alphacoders.com/656/656887.jpg',
+        repo: 'https://images8.alphacoders.com/100/1003220.jpg',
+        readme: 'https://images4.alphacoders.com/973/973967.jpg'
+    }
 };

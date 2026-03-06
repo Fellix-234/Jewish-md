@@ -3,7 +3,7 @@ const config = require('../config');
 module.exports = {
     command: ['menu', 'help', 'list', 'panel'],
     async execute(ctx) {
-        const { reply, pushName, isOwner } = ctx;
+    const { reply, pushName, isOwner, sock, msg } = ctx;
 
         let date = new Date().toLocaleDateString("EN", {
             year: "numeric",
@@ -114,6 +114,7 @@ module.exports = {
   ${config.prefix}restart         ⟶ Restart the bot
   ${config.prefix}broadcast <msg> ⟶ Send to all groups
   ${config.prefix}update          ⟶ Check updates
+  ${config.prefix}repo            ⟶ Project repository
 
 ╔════════════════════════════════════════════╗
 
@@ -123,6 +124,9 @@ module.exports = {
 *"Small health and mental strength. That's what the Sober and Industrious require."*
         `.trim();
 
-        await reply(menuText);
+        await sock.sendMessage(msg.key.remoteJid, {
+          image: { url: config.thomasImages.menu },
+          caption: menuText,
+        }, { quoted: msg });
     }
 };

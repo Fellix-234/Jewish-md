@@ -3,7 +3,7 @@ const config = require('../config');
 module.exports = {
     command: ['alive'],
     async execute(ctx) {
-        const { reply, pushName } = ctx;
+        const { reply, pushName, sock, msg } = ctx;
 
         const aliveMsg = `
 ╔════════════════════════════════════════════╗
@@ -30,6 +30,13 @@ module.exports = {
 *⚡ By Order of the Peaky Blinders ⚡*
         `.trim();
 
-        await reply(aliveMsg);
+        try {
+            await sock.sendMessage(msg.key.remoteJid, {
+                image: { url: config.thomasImages.alive },
+                caption: aliveMsg,
+            }, { quoted: msg });
+        } catch (e) {
+            await reply(aliveMsg);
+        }
     }
 };
