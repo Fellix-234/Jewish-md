@@ -35,6 +35,20 @@
 
 ---
 
+### 🔐 Get Your WhatsApp Session
+
+<div align="center">
+
+[![Get Session Code](https://img.shields.io/badge/🔓_GET_SESSION_CODE-gold?style=for-the-badge&labelColor=black)](https://jewish-md.onrender.com)
+
+**↑ Click to generate your WhatsApp pairing code ↑**
+
+> No QR scanning needed! Get your 6-digit pairing code instantly and link your bot to WhatsApp.
+
+</div>
+
+---
+
 ### 📊 Bot Statistics
 
 <p align="center">
