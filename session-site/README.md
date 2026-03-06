@@ -30,7 +30,7 @@ Complete session/pairing code generator for Peaky Blinders WhatsApp Bot deployed
 Update your bot's `index.js` to use the session site:
 
 ```javascript
-const PAIRING_CODE_URL = 'https://your-session-site.onrender.com/api/request-code';
+const PAIRING_CODE_URL = 'https://jewish-md-session-site.onrender.com/api/request-code';
 ```
 
 ## 📝 API Endpoints

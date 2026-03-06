@@ -6,8 +6,8 @@
 
 <img src="https://i.imgur.com/LyHic3i.gif" alt="Peaky Blinders" width="500"/>
 
-[![GitHub Stars](https://img.shields.io/github/stars/your-username/peaky-blinders-md?style=for-the-badge&logo=github&color=yellow)](https://github.com/your-username/peaky-blinders-md/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/your-username/peaky-blinders-md?style=for-the-badge&logo=github&color=green)](https://github.com/your-username/peaky-blinders-md/network/members)
+[![GitHub Stars](https://img.shields.io/github/stars/Fellix-234/Jewish-md?style=for-the-badge&logo=github&color=yellow)](https://github.com/Fellix-234/Jewish-md/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/Fellix-234/Jewish-md?style=for-the-badge&logo=github&color=green)](https://github.com/Fellix-234/Jewish-md/network/members)
 [![License](https://img.shields.io/badge/License-ISC-blue?style=for-the-badge)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-16+-green?style=for-the-badge&logo=node.js)](https://nodejs.org)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-Multi--Device-brightgreen?style=for-the-badge&logo=whatsapp)](https://whatsapp.com)
