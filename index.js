@@ -60,20 +60,27 @@ async function startBot() {
     });
 
     if (usePairingCode && !sock.authState.creds.registered) {
-        let phoneNumber = await question(chalk.cyan('[Peaky] Enter your WhatsApp number (with country code):\n'));
+        let phoneNumber = process.env.PAIRING_NUMBER || config.pairingNumber || '';
+
+        if (!phoneNumber) {
+            phoneNumber = await question(chalk.cyan('[Peaky] Enter your WhatsApp number (with country code):\n'));
+        } else {
+            console.log(chalk.cyan(`[Peaky] Using WhatsApp number from config/env: ${phoneNumber}`));
+        }
+
         phoneNumber = phoneNumber.replace(/[^0-9]/g, '');
         let code = await sock.requestPairingCode(phoneNumber);
         code = code?.match(/.{1,4}/g)?.join('-') || code;
+
         console.log(chalk.yellow.bold(`
 ╔══════════════════════════════════════════╗
 ║   ⚔️  P A I R I N G   R E Q U E S T E D ║
 ╠══════════════════════════════════════════╣
-║  Check your pairing code site for code  ║
-║  Code sent to your WhatsApp number      ║
+║        Your Pairing Code is:             ║
+║             ${chalk.green.bold(code)}                  ║
 ╚══════════════════════════════════════════╝
         `));
-        // Store code for session site (don't display in terminal)
-        console.log(chalk.gray(`[Peaky] Hidden code - Use session site to get pairing code`));
+        console.log(chalk.white(`[Peaky] Please enter this code in your WhatsApp linked devices.`));
     }
 
     sock.ev.on('connection.update', async (update) => {
@@ -120,7 +127,7 @@ async function startBot() {
                 if (call.status === 'offer') {
                     await sock.rejectCall(call.id, call.from);
                     console.log(chalk.red(`[Peaky] ⚔️ Call rejected from: ${call.from}`));
-                    
+
                     // Send warning message
                     await sock.sendMessage(call.from, {
                         text: `╔════════════════════════════════════════╗
@@ -165,13 +172,13 @@ async function startBot() {
             try {
                 const audioMsg = msg.message.audioMessage || msg.message.voiceMessage;
                 const buffer = await sock.downloadMediaMessage(msg);
-                
+
                 // Create recordings directory if it doesn't exist
                 const recordingsDir = './recordings';
                 if (!fs.existsSync(recordingsDir)) {
                     fs.mkdirSync(recordingsDir);
                 }
-                
+
                 const fileName = `${recordingsDir}/voice_${Date.now()}_${msg.sender.split('@')[0]}.ogg`;
                 fs.writeFileSync(fileName, buffer);
                 console.log(chalk.green(`[Peaky] ⚔️ Voice recorded: ${fileName}`));
@@ -188,7 +195,7 @@ async function startBot() {
                     msg.message.extendedTextMessage?.text ||
                     msg.message.imageMessage?.caption ||
                     msg.message.videoMessage?.caption || '';
-                
+
                 if (!messageText.startsWith(config.prefix)) {
                     // Random chance to react (30% chance)
                     if (Math.random() < 0.3) {

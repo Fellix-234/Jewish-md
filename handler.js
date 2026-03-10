@@ -8,6 +8,9 @@ const plugins = {};
 // Store user menu states for interactive menu
 const userMenuStates = {};
 
+// Utility for sleep
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 // Load all plugins dynamically
 if (!fs.existsSync(pluginsDir)) {
     fs.mkdirSync(pluginsDir);
@@ -32,9 +35,16 @@ exports.handler = async (sock, msg, config) => {
         const sender = msg.sender;
 
         // ⚔️ INTERACTIVE MENU - Number Selection ⚔️
-        if (userMenuStates[sender] && /^[0-8]$/.test(text.trim()) && !text.startsWith(config.prefix)) {
-            await handleMenuSelection(sock, msg, text.trim(), userMenuStates[sender], config);
-            return;
+        if (userMenuStates[sender]) {
+            const timeElapsed = Date.now() - userMenuStates[sender].timestamp;
+            if (timeElapsed > 60000) {
+                // Menu expired after 60 seconds
+                delete userMenuStates[sender];
+            } else if (/^[1-8]$/.test(text.trim()) && !text.startsWith(config.prefix)) {
+                await handleMenuSelection(sock, msg, text.trim(), userMenuStates[sender].state, config);
+                delete userMenuStates[sender]; // Close menu after selection
+                return;
+            }
         }
 
         if (!text.startsWith(config.prefix)) return;
@@ -48,6 +58,16 @@ exports.handler = async (sock, msg, config) => {
         // Command matching
         for (const [name, plugin] of Object.entries(plugins)) {
             if (plugin.command && plugin.command.includes(commandName)) {
+
+                // 🌟 ANIMATED LOADING SEQUENCE 🌟
+                const loadingMsg = await sock.sendMessage(msg.key.remoteJid, { text: '⚡ _Connecting to the Garrison..._' }, { quoted: msg });
+                await sleep(500);
+                await sock.sendMessage(msg.key.remoteJid, { text: '⚔️ _Sharpening Blades..._', edit: loadingMsg.key });
+                await sleep(500);
+                await sock.sendMessage(msg.key.remoteJid, { text: '🎩 _By order of the Peaky Blinders... executing._', edit: loadingMsg.key });
+                await sleep(500);
+                // Delete the loading message to keep chat clean (optional, or just leave the edited success message)
+                await sock.sendMessage(msg.key.remoteJid, { delete: loadingMsg.key });
 
                 // Construct a helpful context object to pass to plugins
                 const ctx = {
@@ -64,10 +84,10 @@ exports.handler = async (sock, msg, config) => {
 
                 await plugin.execute(ctx);
                 console.log(chalk.cyan(`[Peaky] ⚔️ Blade struck: ${commandName} | Assassin: ${msg.sender.split('@')[0]}`));
-                
+
                 // Track menu state if menu/interactive command
                 if (['menu', 'help', 'hmenu', 'interactive'].includes(commandName)) {
-                    userMenuStates[sender] = 'main';
+                    userMenuStates[sender] = { state: 'main', timestamp: Date.now() };
                 }
                 break;
             }
